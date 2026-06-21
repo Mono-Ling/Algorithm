@@ -2,16 +2,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
+            "type": "shell",
             "label": "Build (MSVC)",
-            "command": "cl.exe",
+            "command": "${workspaceFolder}\\build.bat",
             "args": [
-                "/Zi",
-                "/EHsc",
-                "/nologo",
-                "/std:c++17",
-                "/Fe${workspaceFolder}\\${fileBasenameNoExtension}.exe",
-                "${workspaceFolder}\\*.cpp"
+                "${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -26,19 +21,14 @@
             "detail": "Compile all .cpp files with MSVC"
         },
         {
-            "type": "cppbuild",
+            "type": "shell",
             "label": "Build Single File (MSVC)",
-            "command": "cl.exe",
+            "command": "${workspaceFolder}\\build_single.bat",
             "args": [
-                "/Zi",
-                "/EHsc",
-                "/nologo",
-                "/std:c++17",
-                "/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "${file}"
+                "${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$msCompile"
@@ -49,7 +39,11 @@
         {
             "label": "Clean",
             "type": "shell",
-            "command": "cmd /c \"del /Q ${workspaceFolder}\\*.exe ${workspaceFolder}\\*.obj ${workspaceFolder}\\*.ilk ${workspaceFolder}\\*.pdb 2>NUL\"",
+            "command": "cmd",
+            "args": [
+                "/c",
+                "del /Q ${workspaceFolder}\\*.exe ${workspaceFolder}\\*.obj ${workspaceFolder}\\*.ilk ${workspaceFolder}\\*.pdb 2>NUL"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
