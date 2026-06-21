@@ -1,4 +1,32 @@
+﻿# Build artifacts
 *.exe
 *.ilk
 *.obj
 *.pdb
+*.lib
+*.dll
+*.exp
+*.suo
+*.sdf
+*.opensdf
+*.tlog
+*.log
+
+# Visual Studio
+.vs/
+*.user
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.VC.db
+
+# Debug
+*.db
+*.ddb
+
+# OS
+Thumbs.db

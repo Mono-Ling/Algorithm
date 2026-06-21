@@ -1,28 +1,60 @@
-{
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "cppbuild",
-			"label": "C/C++: cl.exe 生成活动文件",
-			"command": "cl.exe",
-			"args": [
-				"/Zi",
-				"/EHsc",
-				"/nologo",
-				"/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
-				"${file}"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$msCompile"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"detail": "编译器: cl.exe"
-		}
-	]
+﻿{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build (MSVC)",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/nologo",
+                "/std:c++17",
+                "/Fe${workspaceFolder}\\${fileBasenameNoExtension}.exe",
+                "${workspaceFolder}\\*.cpp"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compile all .cpp files with MSVC"
+        },
+        {
+            "type": "cppbuild",
+            "label": "Build Single File (MSVC)",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/nologo",
+                "/std:c++17",
+                "/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${file}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build",
+            "detail": "Compile current file only with MSVC"
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "cmd /c \"del /Q ${workspaceFolder}\\*.exe ${workspaceFolder}\\*.obj ${workspaceFolder}\\*.ilk ${workspaceFolder}\\*.pdb 2>NUL\"",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "detail": "Remove build artifacts"
+        }
+    ]
 }
